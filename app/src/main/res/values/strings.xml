@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TP1Mobile2</string>
+    <string name="circleText">What\'s this color?</string>
+    <string name="redText">RED</string>
+    <string name="pinkText">PINK</string>
+    <string name="violetText">VIOLET</string>
+    <string name="blueText">BLUE</string>
+    <string name="greenText">GREEN</string>
+    <string name="brownText">BROWN</string>
+    <string name="orangeText">ORANGE</string>
 </resources>

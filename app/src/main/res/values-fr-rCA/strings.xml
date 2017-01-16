@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="circleText">Quelle est cette couleur??</string>
+    <string name="redText">ROUGE</string>
+    <string name="pinkText">ROSE</string>
+    <string name="blueText">BLEU</string>
+    <string name="greenText">VERT</string>
+    <string name="brownText">BRUN</string>
+</resources>
