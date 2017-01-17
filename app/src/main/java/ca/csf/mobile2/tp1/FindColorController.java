@@ -1,4 +1,4 @@
-package com.example.alexandre.tp1;
+package ca.csf.mobile2.tp1;
 
 import android.app.Activity;
 

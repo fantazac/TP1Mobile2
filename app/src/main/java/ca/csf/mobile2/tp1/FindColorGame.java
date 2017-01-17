@@ -1,8 +1,10 @@
-package com.example.alexandre.tp1;
+package ca.csf.mobile2.tp1;
 
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Build;
+
+import com.example.alexandre.tp1.R;
 
 import java.util.Random;
 
@@ -82,8 +84,14 @@ public class FindColorGame {
 
     private void playSound(boolean goodAnswer) {
         if (goodAnswer) {
+            if(goodSound.isPlaying()){
+                goodSound.stop();
+            }
             goodSound.start();
         } else {
+            if(wrongSound.isPlaying()){
+                wrongSound.stop();
+            }
             wrongSound.start();
         }
     }
