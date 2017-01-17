@@ -5,83 +5,80 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alexandre.tp1mobile2.MainActivity">
+    tools:context="com.example.alexandre.tp1.MainActivity">
 
     <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/circleText"
         android:textColor="@color/question"
         android:textSize="24sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewQuestion"
-        app:layout_constraintLeft_toTopOf="@+id/imageView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintRight_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="88dp"
         android:layout_height="88dp"
-        app:srcCompat="@drawable/circle"
-        android:id="@+id/imageView"
-        app:layout_constraintLeft_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion"
+        app:srcCompat="@drawable/circle" />
 
     <TextView
+        android:id="@+id/textColor1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:onClick="onSelectedColor"
         android:text="TextView"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:onClick="onSelectedColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textColor1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="48dp"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
+        android:id="@+id/textColor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="onSelectedColor"
         android:text="TextView"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:onClick="onSelectedColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textColor2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="48dp"
         app:layout_constraintTop_toBottomOf="@+id/textColor1" />
 
     <TextView
+        android:id="@+id/textColor3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="onSelectedColor"
         android:text="TextView"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:onClick="onSelectedColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textColor3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="48dp"
         app:layout_constraintTop_toBottomOf="@+id/textColor2" />
 
     <TextView
+        android:id="@+id/textColor4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="onSelectedColor"
         android:text="TextView"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:onClick="onSelectedColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textColor4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="48dp"
         app:layout_constraintTop_toBottomOf="@+id/textColor3" />
 
 </android.support.constraint.ConstraintLayout>

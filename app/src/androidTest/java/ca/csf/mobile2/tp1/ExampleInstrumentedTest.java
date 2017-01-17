@@ -1,4 +1,4 @@
-package com.example.alexandre.tp1mobile2;
+package com.example.alexandre.tp1;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

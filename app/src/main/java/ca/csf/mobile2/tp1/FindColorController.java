@@ -1,4 +1,6 @@
-package com.example.alexandre.tp1mobile2;
+package com.example.alexandre.tp1;
+
+import android.app.Activity;
 
 /**
  * Created by Alexandre on 2017-01-16.
@@ -18,8 +20,12 @@ public class FindColorController {
         findColorGame.getInputFromView(colorId);
     }
 
-    public void setNewGame(String[] texts, String[] colors){
-        mainActivity.setTextsAndColors(texts, colors);
+    public void setNewGame(String[] texts, int[] colors, int validColor){
+        mainActivity.setTextsAndColors(texts, colors, validColor);
+    }
+
+    public Activity getActivity(){
+        return mainActivity;
     }
 
 }

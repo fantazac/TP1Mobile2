@@ -1,9 +1,6 @@
-package com.example.alexandre.tp1mobile2;
+package com.example.alexandre.tp1;
 
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +9,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView questionText;
     private TextView[] colorTexts;
-    private TextView color1Text;
-    private TextView color2Text;
-    private TextView color3Text;
-    private TextView color4Text;
-    private Drawable circle;
+    private ImageView circle;
 
     private FindColorController findColorController;
 
@@ -32,25 +24,20 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
         }
 
-        InitialiseView();
+        initialiseView();
 
         findColorController = new FindColorController(this);
     }
 
-    private void InitialiseView(){
-        questionText = (TextView)findViewById(R.id.textViewQuestion);
-        color1Text = (TextView)findViewById(R.id.textColor1);
-        color2Text = (TextView)findViewById(R.id.textColor2);
-        color3Text = (TextView)findViewById(R.id.textColor3);
-        color4Text = (TextView)findViewById(R.id.textColor4);
-        circle = getDrawable(R.drawable.circle);
+    private void initialiseView(){
+        circle = (ImageView) findViewById(R.id.imageView);
 
         colorTexts = new TextView[4];
 
-        colorTexts[0] = color1Text;
-        colorTexts[1] = color2Text;
-        colorTexts[2] = color3Text;
-        colorTexts[3] = color4Text;
+        colorTexts[0] = (TextView)findViewById(R.id.textColor1);
+        colorTexts[1] = (TextView)findViewById(R.id.textColor2);
+        colorTexts[2] = (TextView)findViewById(R.id.textColor3);
+        colorTexts[3] = (TextView)findViewById(R.id.textColor4);
     }
 
     public void onSelectedColor(View view){
@@ -62,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setTextsAndColors(String[] texts, String[] colors){
+    public void setTextsAndColors(String[] texts, int[] colors, int validColor){
         for(int i = 0; i < texts.length; i++){
             colorTexts[i].setText(texts[i]);
-            colorTexts[i].setTextColor(Color.parseColor(colors[i]));
+            colorTexts[i].setTextColor(colors[i]);
         }
-        circle.setColorFilter(Color.parseColor(colors[colors.length-1]), PorterDuff.Mode.SRC_ATOP);
+        circle.setColorFilter(validColor);
     }
 }
