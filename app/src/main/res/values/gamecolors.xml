@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="question">#000000</color>
     <color name="red">#FF1744</color>
     <color name="pink">#FF80AB</color>
     <color name="violet">#9C27B0</color>

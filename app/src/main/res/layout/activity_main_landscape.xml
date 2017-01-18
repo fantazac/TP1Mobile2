@@ -9,7 +9,6 @@
 
     <TextView
         android:text="@string/circleText"
-        android:textColor="@color/question"
         android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

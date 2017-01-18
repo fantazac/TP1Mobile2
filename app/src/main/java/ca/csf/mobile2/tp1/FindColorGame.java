@@ -3,6 +3,7 @@ package ca.csf.mobile2.tp1;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 
 import com.example.alexandre.tp1.R;
 
@@ -14,140 +15,66 @@ import java.util.Random;
 
 public class FindColorGame {
 
-    private FindColorController findColorController;
+    Random random;
+    public int[] textIdsChosen;
 
-    private int validAnswer;
-
-    private String[] texts;
-    private int[] colors;
-
-    private MediaPlayer goodSound;
-    private MediaPlayer wrongSound;
-
-    private Resources resources;
-
-    public FindColorGame(FindColorController findColorController) {
-        this.findColorController = findColorController;
-        resources = findColorController.getActivity().getResources();
-
-        goodSound = MediaPlayer.create(findColorController.getActivity(), R.raw.good_ping);
-        wrongSound = MediaPlayer.create(findColorController.getActivity(), R.raw.wrong_ping);
-
-        initializeAvailableTextsAndColors();
-
-        newGame();
+    public FindColorGame(){
+        random = new Random();
     }
 
-    private void initializeAvailableTextsAndColors() {
-        texts = new String[7];
-        colors = new int[7];
-
-        texts[0] = resources.getString(R.string.redText);
-        texts[1] = resources.getString(R.string.pinkText);
-        texts[2] = resources.getString(R.string.violetText);
-        texts[3] = resources.getString(R.string.blueText);
-        texts[4] = resources.getString(R.string.greenText);
-        texts[5] = resources.getString(R.string.brownText);
-        texts[6] = resources.getString(R.string.orangeText);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            colors[0] = resources.getColor(R.color.red, null);
-            colors[1] = resources.getColor(R.color.pink, null);
-            colors[2] = resources.getColor(R.color.violet, null);
-            colors[3] = resources.getColor(R.color.blue, null);
-            colors[4] = resources.getColor(R.color.green, null);
-            colors[5] = resources.getColor(R.color.brown, null);
-            colors[6] = resources.getColor(R.color.orange, null);
-        } else {
-            //noinspection deprecation
-            colors[0] = resources.getColor(R.color.red);
-            //noinspection deprecation
-            colors[1] = resources.getColor(R.color.pink);
-            //noinspection deprecation
-            colors[2] = resources.getColor(R.color.violet);
-            //noinspection deprecation
-            colors[3] = resources.getColor(R.color.blue);
-            //noinspection deprecation
-            colors[4] = resources.getColor(R.color.green);
-            //noinspection deprecation
-            colors[5] = resources.getColor(R.color.brown);
-            //noinspection deprecation
-            colors[6] = resources.getColor(R.color.orange);
-        }
-
+    public int getValidAnswerForGame(){
+        return random.nextInt(4);
     }
 
-    public void getInputFromView(int colorId) {
-        playSound(validAnswer == colorId);
-        newGame();
-    }
+    public int[] getTextIDsForGame(int[] textIDs){
+        int[] textIDsToSend = new int[4];
+        boolean[] takenTexts = new boolean[7];
 
-    private void playSound(boolean goodAnswer) {
-        if (goodAnswer) {
-            if(goodSound.isPlaying()){
-                goodSound.stop();
-            }
-            goodSound.start();
-        } else {
-            if(wrongSound.isPlaying()){
-                wrongSound.stop();
-            }
-            wrongSound.start();
-        }
-    }
-
-    private void newGame() {
-
-        String[] textsToSend = new String[4];
-        int[] colorsToSend = new int[textsToSend.length + 1];
-        boolean[] takenTexts = new boolean[texts.length];
-        boolean[] takenColors = new boolean[colors.length];
-        int colorOfCircle = 0;
-        int[] textIDs = new int[textsToSend.length];
-
-        for (int b = 0; b < takenTexts.length; b++) {
-            takenTexts[b] = false;
-        }
-
-        Random random = new Random();
+        textIdsChosen = new int[4];
         int selectedNumber;
-
-        validAnswer = random.nextInt(textsToSend.length);
-
         boolean goToNextInt;
-        for (int i = 0; i < textsToSend.length; i++) {
+        for (int i = 0; i < textIDsToSend.length; i++) {
             goToNextInt = false;
             while (!goToNextInt) {
-                selectedNumber = random.nextInt(texts.length);
+                selectedNumber = random.nextInt(textIDs.length);
                 if (!takenTexts[selectedNumber]) {
                     takenTexts[selectedNumber] = true;
                     goToNextInt = true;
-                    textsToSend[i] = texts[selectedNumber];
-                    textIDs[i] = selectedNumber;
+                    textIDsToSend[i] = textIDs[selectedNumber];
+                    textIdsChosen[i] = selectedNumber;
                 }
             }
         }
+        return textIDsToSend;
+    }
 
-        for (int j = 0; j < colorsToSend.length - 1; j++) {
+    public int[] getColorIDsForGame(int[] colorIDs){
+        int[] colorsToSend = new int[4];
+        boolean[] takenColors = new boolean[7];
+
+        int selectedNumber;
+        boolean goToNextInt;
+        for (int j = 0; j < colorsToSend.length; j++) {
             goToNextInt = false;
             while (!goToNextInt) {
                 goToNextInt = false;
-                selectedNumber = random.nextInt(colors.length);
-                if (!takenColors[selectedNumber] && textIDs[j] != selectedNumber) {
+                selectedNumber = random.nextInt(colorIDs.length);
+                if (!takenColors[selectedNumber] && textIdsChosen[j] != selectedNumber) {
                     takenColors[selectedNumber] = true;
                     goToNextInt = true;
-                    colorsToSend[j] = colors[selectedNumber];
+                    colorsToSend[j] = colorIDs[selectedNumber];
                 }
             }
         }
-
-        for(int t = 0; t < texts.length; t++){
-            if(texts[t].equals(textsToSend[validAnswer])){
-                colorOfCircle = colors[t];
-            }
-        }
-
-        findColorController.setNewGame(textsToSend, colorsToSend, colorOfCircle);
+        return colorsToSend;
     }
 
+    public int getCircleColorForGame(int[] currentTextIDs, int[] allTextIDs, int[] allColorIDs, int validAnswer){
+        for(int t = 0; t < allTextIDs.length; t++){
+            if(allTextIDs[t] == currentTextIDs[validAnswer]){
+                return allColorIDs[t];
+            }
+        }
+        return 0;
+    }
 }
