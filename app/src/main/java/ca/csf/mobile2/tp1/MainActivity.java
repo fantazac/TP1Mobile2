@@ -12,6 +12,7 @@ import com.example.alexandre.tp1.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    //BEN_REVIEW : Précise tes noms. "colorTextViews" et "circleView" aurait été mieux. Pas de points perdu.
     private TextView[] colorTexts;
     private ImageView circle;
 
@@ -37,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //BEN_CORRECTION : Le but du système de ressources de Android et de donner la bonne ressource en fonction de la configuration actuelle.
+        //                 Il est donc capable de te donner le bon fichier de layout en fonction de l'orientation de l'écran, ce que tu fais manuellement
+        //                 ici.
+        //
+        //                 Voir https://developer.android.com/training/basics/supporting-devices/screens.html#create-layouts
+        //                 et https://developer.android.com/guide/topics/resources/providing-resources.html#AlternativeResources
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             setContentView(R.layout.activity_main_landscape);
         }
@@ -55,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //BEN_REVIEW : Bien!
     private void initialiseView(){
         circle = (ImageView) findViewById(R.id.imageView);
 
@@ -69,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         colorIDs = new int[] {R.color.red, R.color.pink, R.color.violet, R.color.blue, R.color.green, R.color.brown, R.color.orange};
     }
 
+    //BEN_CORRECTION  : Utilisation de méthodes "Deprecated". SuppressWarnings ne veut pas dire que je ne le verrai pas.
+    //                  En fait, pose toi la question : ça marche, mais jusqu'à quand ? Dès que c'est "depcecated", faut passer à autre chose.
     @SuppressWarnings("deprecation")
     private void newGame(){
         validAnswer = findColorGame.getValidAnswerForGame();

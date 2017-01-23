@@ -15,6 +15,8 @@ import java.util.Random;
 
 public class FindColorGame {
 
+    //BEN_CORRECTION : Tu m'a habitué à mieux....Pourquoi c'est pas private ? C'est pas un DTO que tu a là, mais une classe de la couche Modèle avec
+    //                 de la logique applicative dedans...
     Random random;
     public int[] textIdsChosen;
 
@@ -25,6 +27,13 @@ public class FindColorGame {
     public int getValidAnswerForGame(){
         return random.nextInt(4);
     }
+
+    //BEN_CORRECTION : Cette classe est conçue d'une drôle de façon. En fait, elle fourni des données aléatoires, mais ne conserve rien (sauf textIdsChosen, mais
+    //                 je vais y venir plus tard). Ton "MainActivity" se rammasse donc avec des reponsabilités qui, normalement, devrait appartenir au moddèle.
+    //                 Par exemple, elle doit se souvenir de l'index de la bonne réponse.
+    //
+    //                 Autre problème : il est possible de créer un bogue facilement en inversant l'ordre d'appel à tes méthodes "getTextIDsForGame" et "getColorIDsForGame".
+    //                 Si tu appelle "getColorIDsForGame" avant "getTextIDsForGame", tu va avoir un "NullPointerException". Vérifie, tu verra.
 
     public int[] getTextIDsForGame(int[] textIDs){
         int[] textIDsToSend = new int[4];
